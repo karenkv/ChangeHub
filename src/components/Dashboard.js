@@ -1,10 +1,41 @@
-import React, {Component} from "react";
-import NavBar from "./NavBar";
-import Card from "./Card";
+import React from "react";
+import SignPetitions from "./SignPetitions";
+import SubmitPetition from "./SubmitPetition";
+import Card from "./Card.js"
+import NavBar from "./NavBar.js"
 
-class Dashboard extends Component {
+class Dashboard extends React.Component {
+
     constructor(props) {
         super(props);
+        this.state = {
+            signPetitionsIsOpen: false,
+            submitPetitionIsOpen: false
+        }
+    }
+
+    handleOpenSignPetitions = () => {
+        this.setState({
+            signPetitionsIsOpen: true
+        })
+    }
+
+    handleCloseSignPetitions = () => {
+        this.setState({
+            signPetitionsIsOpen: false
+        })
+    }
+
+    handleOpenSubmitPetition = () => {
+        this.setState({
+            submitPetitionIsOpen: true
+        })
+    }
+
+    handleCloseSubmitPetition = () => {
+        this.setState({
+            submitPetitionIsOpen: false
+        })
     }
 
     render() {
@@ -15,8 +46,10 @@ class Dashboard extends Component {
                     <div className="actions">
                         <h1 className="whole-flex">ChangeHub</h1>
                         <div className="buttons">
-                            <button>Sign Petitions</button>
-                            <button>Submit Petitions</button>
+                            <button onClick={this.handleOpenSignPetitions}>Sign Petitions</button>
+                            <button onClick={this.handleOpenSubmitPetition}>Submit a Petition</button>
+                            <SignPetitions isOpen={this.state.signPetitionsIsOpen} action={this.handleCloseSignPetitions}/>
+                            <SubmitPetition isOpen={this.state.submitPetitionIsOpen} action={this.handleCloseSubmitPetition}/>
                         </div>
                     </div>
                     <h1>Signed Petitions</h1>
@@ -30,9 +63,9 @@ class Dashboard extends Component {
                     <Card/>
                     <Card/>
                     <Card/>
-                </div>
+                </div>   
             </div>
-        );
+        )
     }
 }
 
