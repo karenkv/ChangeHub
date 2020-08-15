@@ -7,6 +7,7 @@ const Signup = (props) => {
                 <form onSubmit={props.signup}>
                     <input type="text" id="name" name="name" placeholder="Name"/><br/>
                     <input type="email" id="email" name="email" placeholder="Email"/><br/>
+                    <input type="text" pattern="[0-9]{10-11}" id="number" name="number" placeholder="Phone Number"/><br/>
                     <input type="password" id="password" name="password" placeholder="Password"/><br/>
                     <input type="text" pattern="[0-9]{5}" id="zip" name="zip" placeholder="Zip Code"/><br/>
                     <button type="submit">Sign Up</button>
