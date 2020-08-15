@@ -3,27 +3,26 @@ import NavBar from "./NavBar";
 import Info from "./Info";
 import Login from "./Login";
 import Signup from "./Signup";
+import history from "../history.js";
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showLogin: true,
-            loggedIn: false,
-            signedUp: false
+            loggedIn: false
         }
     }
 
     handleLogin = () => {
         this.setState({
             loggedIn: true
-        })
+        });
+        history.push("/home");
     }
 
     handleSignup = () => {
-        this.setState({
-            signedUp: true
-        })
+        this.handleSwitch();
     }
 
     handleSwitch = () => {

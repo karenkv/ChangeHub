@@ -3,6 +3,7 @@ import {Router, Switch, Route} from "react-router-dom";
 import Home from './components/Home.js';
 import history from './history';
 import './App.css';
+import Dashboard from "./components/Dashboard";
 
 class App extends Component {
     render() {
@@ -10,6 +11,7 @@ class App extends Component {
             <Router history={history}>
                 <Switch>
                     <Route path="/" exact component={Home}/>
+                    <Route path="/home" exact component={Dashboard}/>
                 </Switch>
             </Router>
         );
