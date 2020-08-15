@@ -1,9 +1,18 @@
 import React, {useState} from "react";
 import Modal from 'react-modal';
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import Input from "@material-ui/core/Input";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const SubmitPetition = (props) => {
+    const dCategories = ["BlackLivesMatter","Yemen Crisis","Save USPS",
+    "Help Lebanon","Free Palestine", "Stand with Hong Kong","Junk Terror Bill"];
+
     const [petitionType, setPetitionType] = useState(null);
     const [typeSelected, setTypeSelected] = useState(false);
+    const [category, setCategory] = useState(null);
 
     const handleSelectText = () => {
         setPetitionType("text");
@@ -25,6 +34,31 @@ const SubmitPetition = (props) => {
         setTypeSelected(false);
     }
 
+    const handleChange = (event) => {
+        setCategory(event.target.value);
+    }
+
+    const categorySelectComponent = () => {
+        return (
+            <FormControl className="category-select">
+                <InputLabel id="category-label">Category</InputLabel>
+                <Select
+                    labelId="category-label"
+                    id="category"
+                    value={category}
+                    onChange={handleChange}
+                    input={<Input id="category" />}
+                >
+                    {dCategories.map((category) => (
+                        <MenuItem key={category} value={category}>
+                          {category}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        )
+    }
+
     return (
         <Modal
             isOpen={props.isOpen}
@@ -38,9 +72,40 @@ const SubmitPetition = (props) => {
                     <h1>Petition Submission Type</h1>}
                 {typeSelected ?
                     <div>
-                        {petitionType === "text" ? <div>Text</div> :
-                    <div>{petitionType === "email" ? <div>Email</div> :
-                    <div>Online</div>}</div>}</div> :
+                        {petitionType === "text" ?
+                            <div>
+                                <h1>Text Petition</h1>
+                                <p><i>Example: text “JUSTICE” to 668366</i></p>
+                                <form>
+                                    {categorySelectComponent()}
+                                    <input type="text" placeholder={"Number"}/>
+                                    <input type="text" placeholder={"Message"}/>
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </div> :
+                            <div>{petitionType === "email" ?
+                                <div>
+                                    <h1>Email Petition</h1>
+                                    <p><i>Example: email template to senator</i></p>
+                                    <form>
+                                        {categorySelectComponent()}
+                                        <input type="text" placeholder="Email"/>
+                                        <input type="text" placeholder="Subject"/>
+                                        <input type="text" placeholder="Message"/>
+                                        <button type="submit">Submit</button>
+                                    </form>
+                                </div> :
+                                <div>
+                                    <h1>Online Petition</h1>
+                                    <p><i>Example: change.org link</i></p>
+                                    <form>
+                                        {categorySelectComponent()}
+                                        <input type="text" placeholder={"Link"}/>
+                                        <button type="submit">Submit</button>
+                                    </form>
+                                </div>
+                            }</div>
+                        }</div> :
                     <div>
                         <button onClick={handleSelectText}>Text</button>
                         <button onClick={handleSelectEmail}>Email</button>
