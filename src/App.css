@@ -105,7 +105,7 @@
     color: var(--gray);
     text-align: center;
     display: block;
-    margin: 5px;
+    margin: 0 auto;
 }
 
 .home-form-child p {
@@ -197,6 +197,10 @@
 .buttons {
     display: flex;
     float: right;
+}
+
+.buttons button {
+    margin: 5px;
 }
 
 .terms-child span {
