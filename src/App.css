@@ -1,38 +1,112 @@
 .App {
-  text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F2F2F2;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-bar {
+    height: 50px;
+    background-color: #304F69;
+    display: flex;
+    justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-bar-img {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 24px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav-bar-text {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-bar-text p {
+    color: #F2F2F2;
+    font-size: 18px;
+    margin-right: 24px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.info {
+    position: relative;
+    color: #333333;
+}
+
+.info img {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 575px;
+}
+
+.info h1 {
+    z-index: 100;
+    position: absolute;
+    font-size: 48px;
+    top: 75px;
+    left: 75px;
+}
+
+.info p {
+    z-index: 100;
+    position: absolute;
+    font-size: 28px;
+    top: 140px;
+    left: 75px;
+    font-style: italic;
+}
+
+.home-form-parent {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background-color: #E0E0E0;
+    top: 75px;
+    right: 75px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.home-form-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-form-child input {
+    width: 250px;
+    height: 10px;
+    border: none;
+    outline: 0;
+    background-color: #E0E0E0;
+    border-bottom: 3px solid #646536;
+    color: #333333;
+    margin-bottom: 25px;
+}
+
+.home-form-child button {
+    width: 150px;
+    height: 50px;
+    border: 0;
+    border-radius: 25px;
+    background-color: #C0A9B0;
+    color: #F2F2F2;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.home-form-child p {
+    font-weight: lighter;
+    text-align: center;
+}
+
+.home-form-child a {
+    color: #304F69;
+    font-weight: bold;
 }
