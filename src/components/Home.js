@@ -18,12 +18,14 @@ class Home extends Component {
         this.setState({
             loggedIn: true
         })
+        this.props.history.push('/dashboard');
     }
 
     handleSignup = () => {
         this.setState({
             signedUp: true
         })
+        this.props.history.push('/dashboard');
     }
 
     handleSwitch = () => {
