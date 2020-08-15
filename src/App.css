@@ -64,8 +64,6 @@
     width: 400px;
     height: 500px;
     background-color: #E0E0E0;
-    top: 75px;
-    right: 75px;
     border-radius: 25px;
     display: flex;
     flex-direction: row;
@@ -109,4 +107,119 @@
 .home-form-child a {
     color: #304F69;
     font-weight: bold;
+}
+
+.terms-parent {
+    height: 50px;
+}
+
+.terms-child {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding-bottom: 25px;
+    width: 25px;
+}
+
+.terms-child input[type=checkbox] {
+    display: none;
+}
+
+.terms-child label {
+    height: 18px;
+    width: 18px;
+    background-color: #C4C4C4;
+    border-radius: 50%;
+    cursor: pointer;
+    content: '';
+}
+
+.terms-child label::after {
+    height: 18px;
+    width: 18px;
+    background-color: #646536;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.terms-child input[type=checkbox]:checked ~ label {
+    background-color: #646536;
+}
+
+.terms-child input[type=checkbox]:checked ~ label::after {
+    background-color: #C4C4C4;
+}
+
+.terms-child input[type=checkbox] ~ p {
+    display: none;
+}
+
+.terms-child input[type=checkbox]:checked ~ p {
+    display: inline;
+    position: absolute;
+    top: 280px;
+    left: 77px;
+    color: #F2F2F2;
+    font-weight: normal;
+    font-size: 10px;
+}
+
+.terms-child span {
+    position: absolute;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (max-width: 800px) {
+    .info {
+        text-align: center;
+    }
+    .info h1{
+        position: relative;
+        left: 0;
+        top: 0;
+        font-size: 24px;
+    }
+    .info p {
+        position: relative;
+        left: 0;
+        top: 0;
+        font-size: 14px;
+    }
+    .info img {
+        display: none;
+    }
+    .home-form-parent {
+        position: relative;
+        margin: 0 auto;
+        width: 80vw;
+        height: 60vh;
+    }
+    .terms-child span {
+        font-size: 14px;
+        left: 18%;
+        width: 200px;
+    }
+}
+
+@media(min-width: 600px) and (max-width: 1000px){
+    .terms-child span {
+        left: 35%;
+    }
+}
+
+@media(min-width: 800px) {
+    .home-form-parent {
+        top: 75px;
+        right: 75px;
+    }
+    .terms-child span {
+        position: absolute;
+        width: 250px;
+        left: 100px;
+        top: 280px;
+    }
 }
