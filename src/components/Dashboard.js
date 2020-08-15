@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="App">
                 <button onClick={this.handleOpenSignPetitions}>Sign Petitions</button>
                 <button onClick={this.handleOpenSubmitPetition}>Submit a Petition</button>
                 <SignPetitions isOpen={this.state.signPetitionsIsOpen} action={this.handleCloseSignPetitions}/>
