@@ -7,7 +7,7 @@ const Login = (props) => {
                 <form onSubmit={props.login}>
                     <input type="email" id="email" name="email" placeholder="Email"/><br/>
                     <input type="password" id="password" name="password" placeholder="Password"/><br/>
-                    <button type="submit">Login</button>
+                    <button type="submit" >Login</button>
                 </form>
                 <p>Don't have an account? <a onClick={props.signup}>Sign up</a></p>
             </div>
