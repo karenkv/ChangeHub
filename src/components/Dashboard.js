@@ -1,6 +1,8 @@
 import React from "react";
 import SignPetitions from "./SignPetitions";
 import SubmitPetition from "./SubmitPetition";
+import Card from "./Card.js"
+import NavBar from "./NavBar.js"
 
 class Dashboard extends React.Component {
 
@@ -39,12 +41,31 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="App">
-                <button onClick={this.handleOpenSignPetitions}>Sign Petitions</button>
-                <button onClick={this.handleOpenSubmitPetition}>Submit a Petition</button>
-                <SignPetitions isOpen={this.state.signPetitionsIsOpen} action={this.handleCloseSignPetitions}/>
-                <SubmitPetition isOpen={this.state.submitPetitionIsOpen} action={this.handleCloseSubmitPetition}/>
+                <NavBar/>
+                <div className="header">
+                    <div className="actions">
+                        <h1 className="whole-flex">ChangeHub</h1>
+                        <div className="buttons">
+                            <button onClick={this.handleOpenSignPetitions}>Sign Petitions</button>
+                            <button onClick={this.handleOpenSubmitPetition}>Submit a Petition</button>
+                            <SignPetitions isOpen={this.state.signPetitionsIsOpen} action={this.handleCloseSignPetitions}/>
+                            <SubmitPetition isOpen={this.state.submitPetitionIsOpen} action={this.handleCloseSubmitPetition}/>
+                        </div>
+                    </div>
+                    <h1>Signed Petitions</h1>
+                </div>
+                <div className="petitions">
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                </div>
             </div>
-        );
+        )
     }
 }
 

@@ -17,8 +17,8 @@ class Home extends Component {
     handleLogin = () => {
         this.setState({
             loggedIn: true
-        });
-        history.push("/home");
+        })
+        this.props.history.push('/home');
     }
 
     handleSignup = () => {

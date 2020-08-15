@@ -1,12 +1,21 @@
+:root {
+    --navy: #304F69;
+    --periwinkle: #BCC4DB;
+    --olive: #646536;
+    --pink: #C0A9B0;
+    --yellow: #EEECBD;
+    --gray: #F2F2F2;
+}
+
 .App {
     width: 100vw;
     height: 100vh;
-    background-color: #F2F2F2;
+    background-color: var(--gray);
 }
 
 .nav-bar {
     height: 50px;
-    background-color: #304F69;
+    background-color: var(--navy);
     display: flex;
     justify-content: space-between;
 }
@@ -25,7 +34,7 @@
 }
 
 .nav-bar-text p {
-    color: #F2F2F2;
+    color: var(--gray);
     font-size: 18px;
     margin-right: 24px;
 }
@@ -82,21 +91,21 @@
     border: none;
     outline: 0;
     background-color: #E0E0E0;
-    border-bottom: 3px solid #646536;
+    border-bottom: 3px solid var(--olive);
     color: #333333;
     margin-bottom: 25px;
 }
 
-.home-form-child button {
+.home-form-child button, button {
     width: 150px;
     height: 50px;
     border: 0;
     border-radius: 25px;
-    background-color: #C0A9B0;
-    color: #F2F2F2;
+    background-color: var(--pink);
+    color: var(--gray);
     text-align: center;
     display: block;
-    margin: 0 auto;
+    margin: 5px;
 }
 
 .home-form-child p {
@@ -137,13 +146,13 @@
 .terms-child label::after {
     height: 18px;
     width: 18px;
-    background-color: #646536;
+    background-color: var(--olive);
     border-radius: 50%;
     cursor: pointer;
 }
 
 .terms-child input[type=checkbox]:checked ~ label {
-    background-color: #646536;
+    background-color: var(--olive);
 }
 
 .terms-child input[type=checkbox]:checked ~ label::after {
@@ -159,9 +168,35 @@
     position: absolute;
     top: 280px;
     left: 77px;
-    color: #F2F2F2;
+    color: var(--gray);
     font-weight: normal;
     font-size: 10px;
+}
+
+.header {
+    padding: 5% 5% 0 5%;
+}
+
+.actions {
+    display: flex;
+}
+
+.whole-flex {
+    flex: 1;
+}
+
+.petitions {
+    position: absolute;
+    margin: 5%;
+    padding: 2%;
+    background: var(--periwinkle);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttons {
+    display: flex;
+    float: right;
 }
 
 .terms-child span {
@@ -240,8 +275,21 @@
 }
 
 .category-select {
-    width: 90%;
+    width: 250px;
     margin: 0 auto;
+    text-align: center;
+    left: 25px;
+    font-size: 12px;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chip {
+    margin: 1px;
+    text-size: 12px;
 }
 
 .type-select {

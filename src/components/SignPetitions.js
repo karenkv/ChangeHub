@@ -1,17 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import Modal from "react-modal";
-import Select from "react-select";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import Chip from "@material-ui/core/Chip";
+import MenuItem from "@material-ui/core/MenuItem";
+import Input from "@material-ui/core/Input";
+import FormControl from "@material-ui/core/FormControl";
 
 const SignPetitions = (props) => {
-    const dCategories = [
-            {value: "blm", label: "BlackLivesMatter"},
-            {value: "yemen", label:"Yemen Crisis"},
-            {value: "usps", label: "Save USPS"},
-            {value: "lebanon", label: "Help Lebanon"},
-            {value: "palestine", label: "Free Palestine"},
-            {value: "hk", label: "Stand with Hong Kong"},
-            {value: "philippines", label: "Junk Terror Bill"}
-        ];
+    const dCategories = ["BlackLivesMatter","Yemen Crisis","Save USPS",
+        "Help Lebanon","Free Palestine", "Stand with Hong Kong","Junk Terror Bill"];
+
+    const [categories, setCategories] = useState([]);
+
+    const handleChange = (event) => {
+        setCategories(event.target.value);
+    }
 
     return (
         <Modal
@@ -25,9 +29,30 @@ const SignPetitions = (props) => {
                 <h1>Petition Signing Form</h1>
                 <form>
                     <p>Select all petition categories you'd like to sign:</p>
-                    <div className="category-select">
-                        <Select isMulti options={dCategories}/>
-                    </div>
+                    <FormControl className="category-select">
+                        <InputLabel id="category-label">Category</InputLabel>
+                        <Select
+                          labelId="category-label"
+                          id="category"
+                          multiple
+                          value={categories}
+                          onChange={handleChange}
+                          input={<Input id="category" />}
+                          renderValue={(selected) => (
+                            <div className="chips">
+                              {selected.map((value) => (
+                                <Chip key={value} label={value} className="chip"/>
+                              ))}
+                            </div>
+                          )}
+                        >
+                          {dCategories.map((category) => (
+                            <MenuItem key={category} value={category}>
+                              {category}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                    </FormControl>
                     <p>Select all petition categories you'd like to sign:</p>
                     <div className="type-select">
                         <div>
