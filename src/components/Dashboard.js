@@ -3,6 +3,7 @@ import SignPetitions from "./SignPetitions";
 import SubmitPetition from "./SubmitPetition";
 import Card from "./Card.js"
 import NavBar from "./NavBar.js"
+import dashboard from '../assets/dashboard.svg';
 
 class Dashboard extends React.Component {
 
@@ -60,16 +61,17 @@ class Dashboard extends React.Component {
             <div className="App">
                 <NavBar loggedIn={true} history={this.props.history} action={this.handleLogout}/>
                 <div className="header">
-                    <div className="actions">
-                        <h1 className="whole-flex">ChangeHub</h1>
-                        <div className="buttons">
-                            <button onClick={this.handleOpenSignPetitions}>Sign Petitions</button>
-                            <button onClick={this.handleOpenSubmitPetition}>Submit a Petition</button>
-                            <SignPetitions isOpen={this.state.signPetitionsIsOpen} action={this.handleCloseSignPetitions}/>
-                            <SubmitPetition isOpen={this.state.submitPetitionIsOpen} action={this.handleCloseSubmitPetition}/>
-                        </div>
+                    <img alt="ChangeHub Dashboard" src={dashboard}/>
+                    <div className="buttons">
+                        <button onClick={this.handleOpenSignPetitions}>Sign Petitions</button>
+                        <button onClick={this.handleOpenSubmitPetition}>Submit a Petition</button>
+                        <SignPetitions isOpen={this.state.signPetitionsIsOpen} action={this.handleCloseSignPetitions}/>
+                        <SubmitPetition isOpen={this.state.submitPetitionIsOpen} action={this.handleCloseSubmitPetition}/>
                     </div>
-                    <h1>Signed Petitions</h1>
+                    <div className="header-text">
+                        <h1>ChangeHub</h1>
+                        <h1>Signed Petitions</h1>
+                    </div>
                 </div>
                 <div className="petitions">
                     <Card/>

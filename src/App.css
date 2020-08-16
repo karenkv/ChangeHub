@@ -185,7 +185,13 @@
 }
 
 .header {
-    padding: 5% 5% 0 5%;
+    padding: 1% 5% 0 5%;
+    height: 209px;
+}
+
+.header img {
+    position: absolute;
+    margin-bottom: 0;
 }
 
 .actions {
@@ -378,6 +384,16 @@
     .home-svg {
         display: none;
     }
+    .header {
+        padding: 5% 5% 0 5%;
+        height: auto;
+    }
+    .header img {
+        display: none;
+    }
+    .header-text {
+        text-align: center;
+    }
 }
 
 @media(min-width: 600px) and (max-width: 1000px){
@@ -398,6 +414,9 @@
         top: 280px;
     }
     .home-title {
+        display: none;
+    }
+    .header-text {
         display: none;
     }
 }
