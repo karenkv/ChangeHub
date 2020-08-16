@@ -18,8 +18,8 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        this.handleGetCategories();
         this.handleGetSignedPetitions();
+        this.handleGetCategories();
     }
 
     handleOpenSignPetitions = () => {
@@ -101,6 +101,9 @@ class Dashboard extends React.Component {
                         })
                 }
             }
+        }).catch(err => {
+            alert("User not logged in!");
+            this.props.history.push("/");
         })
     }
 
