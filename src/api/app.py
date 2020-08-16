@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from bs4 import BeautifulSoup 
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
 import json
 import requests 
 import re
-from bs4 import BeautifulSoup 
+import os
 import pyrebase
 
 config = {
@@ -169,6 +173,27 @@ def getUnsignedPetitions(localId, category):
             relevantPetitions.pop(petition)
     
     return relevantPetitions
+
+def sendEmails(to, subject, content):
+    """
+    Send emails to representatives using SendGrid API
+    
+    Expected inputs:
+        to: a list of emails to send to
+        subject: subject of email
+        content: html content for email body
+    """
+    message = Mail(
+        from_email='areetaw@gmail.com',
+        to_emails=to,
+        subject=subject,
+        html_content=content)
+
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        sg.send(message)
+    except Exception as e:
+        print(e)
 
 if __name__ == '__main__':
     app.run()
