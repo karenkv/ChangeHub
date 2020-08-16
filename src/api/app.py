@@ -6,10 +6,7 @@ from sendgrid.helpers.mail import Mail
 from api.signBot import signPetition
 from twilio.rest import Client
 
-import json
-import sys
 import requests 
-import re
 import os
 import pyrebase
 
@@ -131,6 +128,7 @@ def signPetitions():
     localId = auth.current_user["localId"]
     user = db.child("users").child(localId).get().val()
     successfulSigns = 0
+    petitionsToSign = []
 
     for category in content["categories"]:
         petitionsToSign = getUnsignedPetitions(localId, category)
@@ -139,10 +137,10 @@ def signPetitions():
             # TODO: Call bot on petitionInfo["link"]
             db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
 
-    successfulSigns = 0
-    for petitionId, petitionInfo in petitionsToSign.items():
-        if signPetition(petitionInfo["link"], user["first_name"], user["last_name"], user["email"], user["zip"]):
-            successfulSigns += 1
+    for petitionId in petitionsToSign:
+        petitionInfo = getPetitionInfo(petitionId)
+        # if signPetition(petitionInfo["link"], user["first_name"], user["last_name"], user["email"], user["zip"]):
+        #     successfulSigns += 1
         db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
     
     return jsonify({"count-signed":successfulSigns})
@@ -159,7 +157,7 @@ def getSignedPetitions():
     petitions = {}
     if signed is not None:
         for idx, petitionId in enumerate(signed):
-            if(petitionId is not None):
+            if petitionId is not None and getPetitionInfo(idx) is not None:
                 petitions[idx] = getPetitionInfo(idx)
     return jsonify(petitions)
 

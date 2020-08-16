@@ -15,7 +15,6 @@ bs4 = "*"
 sendgrid = "*"
 twilio = "*"
 selenium = "*"
-twilio.rest = "*"
 
 [requires]
 python_version = "3.8"

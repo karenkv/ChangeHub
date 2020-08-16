@@ -94,16 +94,12 @@ class Dashboard extends React.Component {
             const data = await response.json();
             if (response.ok) {
                 if(data !== undefined) {
-                    Object.keys(data).map((petition) => console.log(petition))
                     this.setState({
                         signed: Object.keys(data).map((petition) =>
                             <Card name={data[petition].name} description={data[petition].description}/>)
                         })
                 }
             }
-        }).catch(err => {
-            alert("User not logged in!");
-            this.props.history.push("/");
         })
     }
 
