@@ -3,6 +3,7 @@ from flask_cors import CORS
 from bs4 import BeautifulSoup 
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from api.signBot import signPetition
 
 import json
 import requests 
@@ -127,12 +128,14 @@ def signPetitions():
     """
     content = request.json
     localId = auth.current_user["localId"]
+    user = db.child("users").child(localId).get().val()
 
     petitionsToSign = getUnsignedPetitions(localId, content["category"])
 
     successfulSigns = 0
     for petitionId, petitionInfo in petitionsToSign.items():
-        # TODO: Call bot on petitionInfo["link"]
+        if signPetition(petitionInfo["link"], user["first_name"], user["last_name"], user["email"], user["zip"]):
+            successfulSigns += 1
         db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
     
     return jsonify({"count-signed":successfulSigns})
@@ -173,11 +176,10 @@ def getPetitionInfo(petitionId):
     return db.child("petitions").child(petitionId).get().val()
 
 def getUnsignedPetitions(localId, category):
-    content = request.json
-    localId = content["localId"]
-    category = content["category"]
     relevantPetitions = db.child("petitions").order_by_child("category").equal_to(category).get().val()
     usersPetitions = db.child("users").child(localId).child("signed-petitions").get().val()
+    if usersPetitions is None:
+        return relevantPetitions
     for petition in usersPetitions.keys():
         if petition in relevantPetitions:
             relevantPetitions.pop(petition)
