@@ -78,7 +78,6 @@ def signup():
         number
     """
     content = request.json
-    # j = json.loads(content)
     user = auth.create_user_with_email_and_password(content["email"], content["password"])
     data = {
         "name":content["name"],
@@ -117,21 +116,56 @@ def logout():
 def signPetitions():
     """
     Expected request body:
-        petitionIDs -> list of IDS
-        idToken -> currently signed in user's token
+        category -> what petition category
     """
     content = request.json
-    
-    for petition in content["petitionIDs"]:
-        link = db.child("petitions").child(petition).child("link").get().val()
-        # Call bot
-        # Add petitionid to users signed petitions
-        # userAcctInfo = auth.get_account_info(content["idToken"])
-        # localId = userAcctInfo["users"][0]["localId"]
-        localId = content["localId"]
-        db.child("users").child(localId).child("signed-petitions").child(petition).set(True)
-        return db.child("users").get().val()
+    localId = auth.current_user["localId"]
 
+    petitionsToSign = getUnsignedPetitions(localId, content["category"])
+
+    successfulSigns = 0
+    for petitionId, petitionInfo in petitionsToSign.items():
+        # TODO: Call bot on petitionInfo["link"]
+        db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
+    
+    return jsonify({"count-signed":successfulSigns})
+
+@app.route('/usersPetitions', methods=['GET'])
+def getSignedPetitions():
+    """
+    Return body:
+        {"1":true, "3":true, ...}
+        boolean value doesn't matter
+    """
+    localId = auth.current_user["localId"]
+    signed = db.child("users").child(localId).child("signed-petitions").get().val()
+    petitions = {}
+    if signed is not None:
+        for petitionId in signed.keys():
+            petitions[petitionId] = getPetitionInfo(petitionId)
+    return jsonify(petitions)
+
+def getPetitionInfo(petitionId):
+    """
+    Expected request body:
+        petitionID
+
+    Return body:
+        link, name, category
+    """
+    return db.child("petitions").child(petitionId).get().val()
+
+def getUnsignedPetitions(localId, category):
+    content = request.json
+    localId = content["localId"]
+    category = content["category"]
+    relevantPetitions = db.child("petitions").order_by_child("category").equal_to(category).get().val()
+    usersPetitions = db.child("users").child(localId).child("signed-petitions").get().val()
+    for petition in usersPetitions.keys():
+        if petition in relevantPetitions:
+            relevantPetitions.pop(petition)
+    
+    return relevantPetitions
 
 if __name__ == '__main__':
     app.run()
