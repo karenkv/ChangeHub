@@ -8,11 +8,9 @@ const NavBar = (props) => {
                 <img alt="quill icon" src={quill} height="32px" width="32px"/>
             </div>
             <div className="nav-bar-text">
-                <p>Home</p>
+                <p onClick={() => {props.loggedIn ? props.history.push("/home") : props.history.push("")}}>Home</p>
                 <p>About</p>
-                {props.loggedIn ?
-                    <p><a>Logout</a></p>:
-                    <p><a>Admin</a></p>}
+                {props.loggedIn ? <p>Logout</p>:<p>Admin</p>}
             </div>
         </div>
     )

@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="App">
-                <NavBar loggedIn={true}/>
+                <NavBar loggedIn={true} history={this.props.history}/>
                 <div className="header">
                     <div className="actions">
                         <h1 className="whole-flex">ChangeHub</h1>

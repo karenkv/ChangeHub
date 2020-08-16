@@ -75,7 +75,7 @@ class Home extends Component {
     render() {
         return (
             <div className="App">
-                <NavBar loggedIn={this.state.loggedIn}/>
+                <NavBar loggedIn={this.state.loggedIn} history={this.props.history}/>
                 <Info/>
                 {this.state.showLogin ?
                     <Login login={this.handleLogin} signup={this.handleSwitch}/> :
