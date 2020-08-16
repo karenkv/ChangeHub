@@ -4,8 +4,10 @@ from bs4 import BeautifulSoup
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from api.signBot import signPetition
+from twilio.rest import Client
 
 import json
+import sys
 import requests 
 import re
 import os
@@ -119,7 +121,6 @@ def logout():
     auth.current_user = None
     return jsonify()
 
-
 @app.route('/signPetitions', methods=['POST'])
 def signPetitions():
     """
@@ -216,6 +217,19 @@ def sendEmails(to, subject, content):
         sg.send(message)
     except Exception as e:
         print(e)
+
+def sendSMS(to, body):
+    account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+    auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
+    
+    client = Client(account_sid, auth_token)
+
+    client.messages.create(
+        body=body,
+        from_="+12057078336",
+        to=to,
+    )
+
 
 if __name__ == '__main__':
     app.run()
