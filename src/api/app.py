@@ -36,7 +36,6 @@ def scrap_for_petitions():
 
     # retrieve all articles
     articles = soup.find_all('article')
-    petitions = {}
 
     for article in articles:
 
