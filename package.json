@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-api": "cd src/api && pipenv run flask run",
-    "install": "cd src/api && pipenv install --dev && cd ..",
+    "install": "cd src/api && pipenv install --dev && cd ../..",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
