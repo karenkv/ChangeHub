@@ -13,6 +13,11 @@ pip install Flask-Cors
 pip install sendgrid
 pip install Pyrebase
 ```
+as well as the package manager [brew](https://brew.sh/) to install:
+
+```
+brew tap twilio/brew && brew install twilio
+````
 
 ## Available Scripts
 
