@@ -71,7 +71,8 @@ def signup():
     """
     Create new user
     Expected request body:
-        name
+        first name
+        last name
         email
         password
         zip
@@ -80,7 +81,9 @@ def signup():
     content = request.json
     user = auth.create_user_with_email_and_password(content["email"], content["password"])
     data = {
-        "name":content["name"],
+        "first_name":content["first_name"],
+        "last_name":content["last_name"],
+        "email":content["email"],
         "number":content["number"],
         "zip" :content["zip"]
     }
