@@ -120,7 +120,6 @@ def logout():
     auth.current_user = None
     return jsonify()
 
-
 @app.route('/signPetitions', methods=['POST'])
 def signPetitions():
     """
@@ -207,19 +206,18 @@ def sendEmails(to, subject, content):
     except Exception as e:
         print(e)
 
-def sendSMS():
-    account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    auth_token = os.environ['TWILIO_AUTH_TOKEN']
+def sendSMS(to, body):
+    account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+    auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
+    
     client = Client(account_sid, auth_token)
 
-    call = client.calls.create(
-        to="+14155551212",
-        from_="+15017250604",
-        url="http://demo.twilio.com/docs/voice.xml"
+    client.messages.create(
+        body=body,
+        from_="+12057078336",
+        to=to,
     )
 
-    print(call.sid)
 
 if __name__ == '__main__':
-    sendSMS()
     app.run()
