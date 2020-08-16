@@ -23,8 +23,8 @@ auth = firebase.auth()
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def scrap_for_petitions():
+@app.route('/scrapper', methods=['GET'])
+def scrape_for_petitions():
     """
     Scraps all new petitions from Color of Change and puts it 
     into Firebbase
@@ -36,25 +36,35 @@ def scrap_for_petitions():
 
     # retrieve all articles
     articles = soup.find_all('article')
+    count = 2
 
     for article in articles:
 
         # find petition information
         link = article.find("a").attrs.get("href")
         category = article.find("ul").find("li").text
-        description = article.find("p").text
+        if "social list opener" in category:
+            category = "General"
+        try:
+            description = article.find("p").text
+        except:
+            description = "Description not found."
         name = article.find("h3").find("a").text
-
+        
         # set up json object to add to firebase
         data = {
+            "name" : name,
             "link" : link,
             "category" : category,
             "description" : description
         }
 
-        db.child("petitions").child(name).set(data)
+        db.child("petitions").child(count).set(data)
+        count += 1
 
-        
+    return jsonify({"message":"Petitions have been added to Firebase"})
+
+    
 # TODO: sign up errors e.g. short password
 @app.route('/signup', methods=['POST'])
 def signup():
