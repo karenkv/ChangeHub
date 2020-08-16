@@ -76,7 +76,7 @@
 .home-svg {
     display: block;
     width: 80vw;
-    margin: 25px auto 0;
+    margin: 100px auto 0;
 }
 
 .home-form-parent {
@@ -414,14 +414,14 @@ button:hover {
 
 @media(min-width: 800px) {
     .home-form-parent {
-        top: 75px;
+        top: 160px;
         right: 75px;
     }
     .terms-child span {
         position: absolute;
         width: 250px;
         left: 100px;
-        top: 280px;
+        top: 300px;
     }
     .home-title {
         display: none;

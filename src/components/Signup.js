@@ -5,7 +5,8 @@ const Signup = (props) => {
         <div className="home-form-parent">
             <div className="home-form-child">
                 <form onSubmit={props.signup}>
-                    <input type="text" id="name" name="name" placeholder="Name" required="required"/><br/>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required="required"/><br/>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required="required"/><br/>
                     <input type="email" id="email" name="email" placeholder="Email" required="required"/><br/>
                     <input type="text" pattern="[0-9]{10}" id="number" name="number"
                            placeholder="Phone Number" required="required"
