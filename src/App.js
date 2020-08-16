@@ -4,6 +4,7 @@ import Home from './components/Home.js';
 import Dashboard from './components/Dashboard.js';
 import history from './history';
 import './App.css';
+import Admin from "./components/Admin";
 
 class App extends Component {
     render() {
@@ -12,6 +13,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/home" exact component={Dashboard}/>
+                    <Route path="/admin" exact component={Admin}/>
                 </Switch>
             </Router>
         );

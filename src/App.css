@@ -73,6 +73,13 @@
     font-style: italic;
 }
 
+.admin-login-svg {
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    height: 60vh;
+}
+
 .home-svg {
     display: block;
     width: 80vw;
@@ -122,6 +129,32 @@
 button:hover {
     cursor: pointer;
     filter: invert(5%);
+}
+
+.approve {
+    background-color: #DEF6CE;
+}
+
+.reject {
+    background-color: #FBAEAE;
+}
+
+.petition {
+    display: flex;
+    flex-direction: row;
+}
+
+.decision {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.decision button {
+    padding: 10px;
+    margin: 10px;
+    color: #333333;
+    font-weight: bold;
 }
 
 .home-form-child p {
@@ -295,6 +328,12 @@ button:hover {
     margin: 25px auto 0;
 }
 
+.modal-form h2 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+}
+
 .close-button {
     text-align: right;
     margin-top: 10px;
@@ -349,7 +388,7 @@ button:hover {
     filter: invert(25%);
 }
 
-.modal-form input[type=text] {
+.modal-form input[type=text], .modal-form input[type="password"] {
     width: 250px;
     height: 10px;
     border: none;
