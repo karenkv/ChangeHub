@@ -3,6 +3,7 @@ from flask_cors import CORS
 from bs4 import BeautifulSoup 
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from api.signBot import signPetition
 from twilio.rest import Client
 
 import json
@@ -128,6 +129,7 @@ def signPetitions():
     """
     content = request.json
     localId = auth.current_user["localId"]
+    user = db.child("users").child(localId).get().val()
     successfulSigns = 0
 
     for category in content["categories"]:
@@ -137,6 +139,12 @@ def signPetitions():
             # TODO: Call bot on petitionInfo["link"]
             db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
 
+    successfulSigns = 0
+    for petitionId, petitionInfo in petitionsToSign.items():
+        if signPetition(petitionInfo["link"], user["first_name"], user["last_name"], user["email"], user["zip"]):
+            successfulSigns += 1
+        db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
+    
     return jsonify({"count-signed":successfulSigns})
 
 @app.route('/usersPetitions', methods=['GET'])

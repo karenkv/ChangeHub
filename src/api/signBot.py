@@ -1,10 +1,9 @@
 from selenium import webdriver
 from time import sleep
 
-driver = webdriver.Chrome()
-
 # Automatically sign a petition on colorofchange.org
 def signPetition(link, fname, lname, email, zipcode):
+    driver = webdriver.Chrome()
     driver.get(link)
     try:
         # Find the form elements on the page
