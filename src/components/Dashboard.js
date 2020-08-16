@@ -12,12 +12,14 @@ class Dashboard extends React.Component {
         this.state = {
             signPetitionsIsOpen: false,
             submitPetitionIsOpen: false,
-            categories: []
+            categories: [],
+            signed: []
         }
     }
 
     componentDidMount() {
         this.handleGetCategories();
+        this.handleGetSignedPetitions();
     }
 
     handleOpenSignPetitions = () => {
@@ -30,6 +32,7 @@ class Dashboard extends React.Component {
         this.setState({
             signPetitionsIsOpen: false
         })
+        this.handleGetSignedPetitions();
     }
 
     handleOpenSubmitPetition = () => {
@@ -79,6 +82,28 @@ class Dashboard extends React.Component {
         })
     }
 
+    handleGetSignedPetitions = () => {
+        fetch('usersPetitions', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(async response => {
+            const data = await response.json();
+            if (response.ok) {
+                if(data !== undefined) {
+                    Object.keys(data).map((petition) => console.log(petition))
+                    this.setState({
+                        signed: Object.keys(data).map((petition) =>
+                            <Card name={data[petition].name} description={data[petition].description}/>)
+                        })
+                }
+            }
+        })
+    }
+
     render() {
         return (
             <div className="App">
@@ -103,14 +128,12 @@ class Dashboard extends React.Component {
                     </div>
                 </div>
                 <div className="petitions">
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
+                    {/*<Card name={"Tell Congress: Pass the COVID-19 Compassion " +*/}
+                    {/*    "and Martha Wright Prison Phone Justice Act."}*/}
+                    {/*    description={"Keep incarcerated people and their families " +*/}
+                    {/*    "connected, now and forever."}*/}
+                    {/*/>*/}
+                    {this.state.signed}
                 </div>
             </div>
         )

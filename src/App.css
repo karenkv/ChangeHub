@@ -219,6 +219,8 @@ button:hover {
     background: var(--periwinkle);
     display: flex;
     flex-wrap: wrap;
+    width: 85vw;
+    min-height: 40vh;
 }
 
 .buttons {

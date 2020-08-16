@@ -129,8 +129,14 @@ def signPetitions():
     content = request.json
     localId = auth.current_user["localId"]
     user = db.child("users").child(localId).get().val()
+    successfulSigns = 0
 
-    petitionsToSign = getUnsignedPetitions(localId, content["category"])
+    for category in content["categories"]:
+        petitionsToSign = getUnsignedPetitions(localId, category)
+
+        for petitionId in petitionsToSign:
+            # TODO: Call bot on petitionInfo["link"]
+            db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
 
     successfulSigns = 0
     for petitionId, petitionInfo in petitionsToSign.items():
@@ -176,13 +182,17 @@ def getPetitionInfo(petitionId):
     return db.child("petitions").child(petitionId).get().val()
 
 def getUnsignedPetitions(localId, category):
-    relevantPetitions = db.child("petitions").order_by_child("category").equal_to(category).get().val()
+    petitions = db.child("petitions").get().val()
+    relevantPetitions = []
+    for idx, petition in enumerate(petitions):
+        if petition is not None:
+            if(petition.get("category") == category):
+                relevantPetitions.append(idx)
     usersPetitions = db.child("users").child(localId).child("signed-petitions").get().val()
-    if usersPetitions is None:
-        return relevantPetitions
-    for petition in usersPetitions.keys():
-        if petition in relevantPetitions:
-            relevantPetitions.pop(petition)
+    if usersPetitions is not None:
+        for petition in usersPetitions.keys():
+            if petition in relevantPetitions:
+                relevantPetitions.pop(petition)
     
     return relevantPetitions
 
