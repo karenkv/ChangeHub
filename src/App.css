@@ -105,7 +105,7 @@
     color: var(--gray);
     text-align: center;
     display: block;
-    margin: 5px;
+    margin: 0 auto;
 }
 
 .home-form-child p {
@@ -199,6 +199,10 @@
     float: right;
 }
 
+.buttons button {
+    margin: 5px;
+}
+
 .terms-child span {
     position: absolute;
     -webkit-touch-callout: none;
@@ -206,6 +210,128 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.modal {
+    background-color: #F2F2F2;
+    border: 1px solid #E0E0E0;
+    height: 500px;
+    width: 350px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal:hover {
+    outline: none;
+}
+
+.modal:focus {
+    outline: none;
+}
+
+.modal-form {
+    background-color: #E0E0E0;
+    border-radius: 25px;
+    height: 450px;
+    width: 300px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+}
+
+.modal-form h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.modal-form p {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.modal-form button {
+    width: 150px;
+    height: 50px;
+    border: 0;
+    border-radius: 25px;
+    background-color: #C0A9B0;
+    color: #F2F2F2;
+    text-align: center;
+    display: block;
+    margin: 25px auto 0;
+}
+
+.close-button {
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.close-button:hover {
+    cursor: pointer;
+    filter: invert(25%);
+}
+
+.category-select {
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+    left: 25px;
+    font-size: 12px;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chip {
+    margin: 1px;
+    text-size: 12px;
+}
+
+.type-select {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.confirmation {
+    width: 90%;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    margin: 25px auto 0;
+}
+
+.modal-form h3 {
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.modal-form h3:hover {
+    cursor: pointer;
+    filter: invert(25%);
+}
+
+.modal-form input[type=text] {
+    width: 250px;
+    height: 10px;
+    border: none;
+    outline: 0;
+    background-color: #E0E0E0;
+    border-bottom: 3px solid var(--olive);
+    color: #333333;
+    margin-top: 25px;
+    margin-left: 25px;
+    text-align: center;
 }
 
 @media (max-width: 800px) {

@@ -63,7 +63,7 @@ class Dashboard extends React.Component {
                     <Card/>
                     <Card/>
                     <Card/>
-                </div>   
+                </div>
             </div>
         )
     }
