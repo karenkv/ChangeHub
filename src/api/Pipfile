@@ -12,6 +12,8 @@ python-dotenv = "*"
 python-firebase = "*"
 pyrebase = "*"
 bs4 = "*"
+sendgrid = "*"
+twilio = "*"
 
 [requires]
 python_version = "3.8"
