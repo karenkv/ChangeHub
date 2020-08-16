@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
-
+import requests 
+import re
+from bs4 import BeautifulSoup 
 import pyrebase
 
 config = {
@@ -22,9 +24,38 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
-def hello():
-    return "Hello World!"
+def scrap_for_petitions():
+    """
+    Scraps all new petitions from Color of Change and puts it 
+    into Firebbase
+    """
+    # set up site for scraping
+    URL = "https://colorofchange.org/campaigns/active/"
+    r = requests.get(URL) 
+    soup = BeautifulSoup(r.content, features="html.parser") 
 
+    # retrieve all articles
+    articles = soup.find_all('article')
+    petitions = {}
+
+    for article in articles:
+
+        # find petition information
+        link = article.find("a").attrs.get("href")
+        category = article.find("ul").find("li").text
+        description = article.find("p").text
+        name = article.find("h3").find("a").text
+
+        # set up json object to add to firebase
+        data = {
+            "link" : link,
+            "category" : category,
+            "description" : description
+        }
+
+        db.child("petitions").child(name).set(data)
+
+        
 # TODO: sign up errors e.g. short password
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -73,7 +104,6 @@ def signPetitions():
     """
     content = request.json
     
-
     for petition in content["petitionIDs"]:
         link = db.child("petitions").child(petition).child("link").get().val()
         # Call bot
