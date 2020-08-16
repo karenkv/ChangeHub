@@ -15,17 +15,19 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard() {
+export default function MediaCard(props) {
   const classes = useStyles();
+  const name = props.name;
+  const description = props.description;
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography gutterBottom variant="p" component="h3">
-          Tell Congress: Pass the COVID-19 Compassion and Martha Wright Prison Phone Justice Act.
+          {name}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          Keep incarcerated people and their families connected, now and forever.
+          {description}
         </Typography>
       </CardContent>
     </Card>
