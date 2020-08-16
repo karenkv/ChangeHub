@@ -49,7 +49,8 @@ class Home extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: event.target.name.value,
+                first_name: event.target.firstName.value,
+                last_name: event.target.lastName.value,
                 email: event.target.email.value,
                 password: event.target.password.value,
                 zip: event.target.zip.value,
