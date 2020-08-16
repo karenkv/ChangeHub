@@ -10,6 +10,7 @@ flask = "*"
 flask-cors = "*"
 python-dotenv = "*"
 python-firebase = "*"
+pyrebase = "*"
 
 [requires]
 python_version = "3.8"
