@@ -149,8 +149,9 @@ def getSignedPetitions():
     signed = db.child("users").child(localId).child("signed-petitions").get().val()
     petitions = {}
     if signed is not None:
-        for petitionId in signed.keys():
-            petitions[petitionId] = getPetitionInfo(petitionId)
+        for idx, petitionId in enumerate(signed):
+            if(petitionId is not None):
+                petitions[idx] = getPetitionInfo(idx)
     return jsonify(petitions)
 
 @app.route('/categories', methods=['GET'])
@@ -182,9 +183,10 @@ def getUnsignedPetitions(localId, category):
                 relevantPetitions.append(idx)
     usersPetitions = db.child("users").child(localId).child("signed-petitions").get().val()
     if usersPetitions is not None:
-        for petition in usersPetitions.keys():
-            if petition in relevantPetitions:
-                relevantPetitions.pop(petition)
+        for idx, petition in enumerate(usersPetitions):
+            if petition is not None:
+                if idx in relevantPetitions:
+                    relevantPetitions.remove(idx)
     
     return relevantPetitions
 
