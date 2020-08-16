@@ -104,6 +104,15 @@ def login():
     user = auth.sign_in_with_email_and_password(content["email"], content["password"])
     return jsonify(user)
 
+@app.route('/logout', methods=['GET'])
+def logout():
+    """
+    Signs current user out
+    """
+    auth.current_user = None
+    return jsonify()
+
+
 @app.route('/signPetitions', methods=['POST'])
 def signPetitions():
     """

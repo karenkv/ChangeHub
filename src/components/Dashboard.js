@@ -38,10 +38,27 @@ class Dashboard extends React.Component {
         })
     }
 
+    handleLogout = () => {
+        fetch('/logout', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(async response => {
+            const data = await response.json();
+            if (response.ok) {
+                alert("User successfully logged out!");
+                this.props.history.push("/");
+            }
+        });
+    }
+
     render() {
         return (
             <div className="App">
-                <NavBar/>
+                <NavBar loggedIn={true} history={this.props.history} action={this.handleLogout}/>
                 <div className="header">
                     <div className="actions">
                         <h1 className="whole-flex">ChangeHub</h1>

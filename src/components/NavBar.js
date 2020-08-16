@@ -1,16 +1,16 @@
 import React from "react";
 import quill from '../assets/quill.png';
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <div className="nav-bar">
             <div className="nav-bar-img">
                 <img alt="quill icon" src={quill} height="32px" width="32px"/>
             </div>
             <div className="nav-bar-text">
-                <p>Home</p>
+                <p onClick={() => {props.loggedIn ? props.history.push("/home") : props.history.push("")}}>Home</p>
                 <p>About</p>
-                <p>Admin</p>
+                {props.loggedIn ? <p onClick={props.action}>Logout</p>:<p>Admin</p>}
             </div>
         </div>
     )
