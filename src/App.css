@@ -73,6 +73,12 @@
     font-style: italic;
 }
 
+.home-svg {
+    display: block;
+    width: 80vw;
+    margin: 25px auto 0;
+}
+
 .home-form-parent {
     position: absolute;
     width: 400px;
@@ -298,7 +304,7 @@
 
 .chip {
     margin: 1px;
-    text-size: 12px;
+    font-size: 12px;
 }
 
 .type-select {
@@ -340,16 +346,16 @@
 }
 
 @media (max-width: 800px) {
-    .info {
+    .info, .home-title {
         text-align: center;
     }
-    .info h1{
+    .info h1, .home-title h1{
         position: relative;
         left: 0;
         top: 0;
         font-size: 24px;
     }
-    .info p {
+    .info p, .home-title p {
         position: relative;
         left: 0;
         top: 0;
@@ -369,6 +375,9 @@
         left: 18%;
         width: 200px;
     }
+    .home-svg {
+        display: none;
+    }
 }
 
 @media(min-width: 600px) and (max-width: 1000px){
@@ -387,5 +396,8 @@
         width: 250px;
         left: 100px;
         top: 280px;
+    }
+    .home-title {
+        display: none;
     }
 }

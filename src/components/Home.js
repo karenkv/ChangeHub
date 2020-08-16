@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import NavBar from "./NavBar";
-import Info from "./Info";
 import Login from "./Login";
 import Signup from "./Signup";
+import login from '../assets/login.svg';
+import signup from '../assets/signup.svg';
 
 class Home extends Component {
     constructor(props) {
@@ -76,10 +77,21 @@ class Home extends Component {
         return (
             <div className="App">
                 <NavBar loggedIn={this.state.loggedIn} history={this.props.history}/>
-                <Info/>
+                {/*<Info/>*/}
+                <div className="home-title">
+                    <h1>ChangeHub</h1>
+                    <p><i>Sign petitions, email your representatives, <br/>and text to petitions all in one place</i></p>
+                </div>
+                <div className="home-svg">
+                    {this.state.showLogin ?
+                        <img alt="ChangeHub" src={login} height="500px"/>:
+                        <img alt="ChangeHub" src={signup} height="500px"/>
+                    }
+                </div>
                 {this.state.showLogin ?
                     <Login login={this.handleLogin} signup={this.handleSwitch}/> :
-                    <Signup signup={this.handleSignup} login={this.handleSwitch}/>}
+                    <Signup signup={this.handleSignup} login={this.handleSwitch}/>
+                }
             </div>
         );
     }
