@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d75e0d526a1225cddcedd279b077363eb041596fd183f1adcf2859cc8a7eafe3"
+            "sha256": "7794f05a796fcaf84a86c3c624d7c030510eedc35440dac1688977ed82f243ac"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,21 @@
         ]
     },
     "default": {
+        "beautifulsoup4": {
+            "hashes": [
+                "sha256:73cc4d115b96f79c7d77c1c7f7a0a8d4c57860d1041df407dd1aae7f07a77fd7",
+                "sha256:a6237df3c32ccfaee4fd201c8f5f9d9df619b93121d01353a64a73ce8c6ef9a8",
+                "sha256:e718f2342e2e099b640a34ab782407b7b676f47ee272d6739e60b8ea23829f2c"
+            ],
+            "version": "==4.9.1"
+        },
+        "bs4": {
+            "hashes": [
+                "sha256:36ecea1fd7cc5c0c6e4a1ff075df26d50da647b75376626cc186e2212886dd3a"
+            ],
+            "index": "pypi",
+            "version": "==0.0.1"
+        },
         "click": {
             "hashes": [
                 "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a",
@@ -206,6 +221,13 @@
             ],
             "version": "==3.4.3"
         },
+        "pyjwt": {
+            "hashes": [
+                "sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e",
+                "sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96"
+            ],
+            "version": "==1.7.1"
+        },
         "pyrebase": {
             "hashes": [
                 "sha256:0a1fd6efc36ae2e4747e8c3b4e6ad5dc1abfa5729d6465b04c8f148ff6c626c0",
@@ -229,12 +251,26 @@
             "index": "pypi",
             "version": "==1.2"
         },
+        "python-http-client": {
+            "hashes": [
+                "sha256:93d6a26b426e48b04e589c1f103e7c040193e4ccc379ea50cd6e12f94cca7c69"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==3.2.7"
+        },
         "python-jwt": {
             "hashes": [
                 "sha256:6b2d334cfa8af8423d96bff45a00a7bc811d87f460d1e7f4732b3ae90220f02c",
                 "sha256:db2a8ad41b816e0c00e0f8ba3c1899675daa26139641a61356579304960533a1"
             ],
             "version": "==2.0.1"
+        },
+        "pytz": {
+            "hashes": [
+                "sha256:a494d53b6d39c3c6e44c3bec237336e14305e4f29bbf800b599253057fbb79ed",
+                "sha256:c35965d010ce31b23eeb663ed3cc8c906275d6be1a34393a1d73a41febf4a048"
+            ],
+            "version": "==2020.1"
         },
         "requests": {
             "hashes": [
@@ -259,6 +295,14 @@
             "markers": "python_version >= '3.5' and python_version < '4'",
             "version": "==4.6"
         },
+        "sendgrid": {
+            "hashes": [
+                "sha256:0bb53924d3f46e895c19150f4ee8451cebb59eee0aaa1f8f7232f37eac79ca7a",
+                "sha256:50e0061954ead24167a300f104a6c5ea11f1e132e4fdba440f634ed79a1cbef9"
+            ],
+            "index": "pypi",
+            "version": "==6.4.5"
+        },
         "six": {
             "hashes": [
                 "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259",
@@ -266,6 +310,27 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.15.0"
+        },
+        "soupsieve": {
+            "hashes": [
+                "sha256:1634eea42ab371d3d346309b93df7870a88610f0725d47528be902a0d95ecc55",
+                "sha256:a59dc181727e95d25f781f0eb4fd1825ff45590ec8ff49eadfd7f1a537cc0232"
+            ],
+            "markers": "python_version >= '3.5'",
+            "version": "==2.0.1"
+        },
+        "starkbank-ecdsa": {
+            "hashes": [
+                "sha256:cd17ec9fa7ad8ae3fc81a63ddb7e0d7fb798a048e40c1a9c55afd1a207d1eff9"
+            ],
+            "version": "==1.0.0"
+        },
+        "twilio": {
+            "hashes": [
+                "sha256:db0c1ed249ad672007cbe7109e8a2cbe30c4ed660beba740976baa32f0a8574a"
+            ],
+            "index": "pypi",
+            "version": "==6.44.2"
         },
         "werkzeug": {
             "hashes": [

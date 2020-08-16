@@ -154,6 +154,16 @@ def getSignedPetitions():
             petitions[petitionId] = getPetitionInfo(petitionId)
     return jsonify(petitions)
 
+@app.route('/categories', methods=['GET'])
+def getCategories():
+    pDB = db.child("petitions").get().val()
+    petitions = [petition for petition in pDB if petition is not None]
+    categories = set()
+    for petition in petitions:
+        categories.add(petition.get("category"))
+    return jsonify({"categories": list(categories)})
+
+
 def getPetitionInfo(petitionId):
     """
     Expected request body:

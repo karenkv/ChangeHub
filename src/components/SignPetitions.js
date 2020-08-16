@@ -11,7 +11,9 @@ const SignPetitions = (props) => {
     const dCategories = ["BlackLivesMatter","Yemen Crisis","Save USPS",
         "Help Lebanon","Free Palestine", "Stand with Hong Kong","Junk Terror Bill"];
 
-    const [categories, setCategories] = useState([]);
+    const categories = props.categories;
+
+    const [selectedCategories, setCategories] = useState([]);
 
     const handleChange = (event) => {
         setCategories(event.target.value);
@@ -35,7 +37,7 @@ const SignPetitions = (props) => {
                           labelId="category-label"
                           id="category"
                           multiple
-                          value={categories}
+                          value={selectedCategories}
                           onChange={handleChange}
                           input={<Input id="category" />}
                           renderValue={(selected) => (
@@ -46,7 +48,7 @@ const SignPetitions = (props) => {
                             </div>
                           )}
                         >
-                          {dCategories.map((category) => (
+                          {categories.map((category) => (
                             <MenuItem key={category} value={category}>
                               {category}
                             </MenuItem>

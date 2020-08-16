@@ -11,8 +11,13 @@ class Dashboard extends React.Component {
         super(props);
         this.state = {
             signPetitionsIsOpen: false,
-            submitPetitionIsOpen: false
+            submitPetitionIsOpen: false,
+            categories: []
         }
+    }
+
+    componentDidMount() {
+        this.handleGetCategories();
     }
 
     handleOpenSignPetitions = () => {
@@ -56,6 +61,24 @@ class Dashboard extends React.Component {
         });
     }
 
+    handleGetCategories = () => {
+        fetch('/categories', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(async response => {
+            const data = await response.json();
+            if (response.ok) {
+                this.setState({
+                    categories: data.categories
+                })
+            }
+        })
+    }
+
     render() {
         return (
             <div className="App">
@@ -65,8 +88,14 @@ class Dashboard extends React.Component {
                     <div className="buttons">
                         <button onClick={this.handleOpenSignPetitions}>Sign Petitions</button>
                         <button onClick={this.handleOpenSubmitPetition}>Submit a Petition</button>
-                        <SignPetitions isOpen={this.state.signPetitionsIsOpen} action={this.handleCloseSignPetitions}/>
-                        <SubmitPetition isOpen={this.state.submitPetitionIsOpen} action={this.handleCloseSubmitPetition}/>
+                        <SignPetitions isOpen={this.state.signPetitionsIsOpen}
+                                       action={this.handleCloseSignPetitions}
+                                       categories={this.state.categories}
+                        />
+                        <SubmitPetition isOpen={this.state.submitPetitionIsOpen}
+                                        action={this.handleCloseSubmitPetition}
+                                        categories={this.state.categories}
+                        />
                     </div>
                     <div className="header-text">
                         <h1>ChangeHub</h1>
