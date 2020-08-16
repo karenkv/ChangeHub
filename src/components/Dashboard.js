@@ -32,6 +32,7 @@ class Dashboard extends React.Component {
         this.setState({
             signPetitionsIsOpen: false
         })
+        this.handleGetSignedPetitions();
     }
 
     handleOpenSubmitPetition = () => {
