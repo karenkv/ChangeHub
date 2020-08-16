@@ -9,6 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 const SubmitPetition = (props) => {
     const dCategories = ["BlackLivesMatter","Yemen Crisis","Save USPS",
     "Help Lebanon","Free Palestine", "Stand with Hong Kong","Junk Terror Bill"];
+    const categories = props.categories;
 
     const [petitionType, setPetitionType] = useState(null);
     const [typeSelected, setTypeSelected] = useState(false);
@@ -49,7 +50,7 @@ const SubmitPetition = (props) => {
                     onChange={handleChange}
                     input={<Input id="category" />}
                 >
-                    {dCategories.map((category) => (
+                    {categories.map((category) => (
                         <MenuItem key={category} value={category}>
                           {category}
                         </MenuItem>
