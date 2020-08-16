@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="App">
-                <NavBar/>
+                <NavBar loggedIn={true}/>
                 <div className="header">
                     <div className="actions">
                         <h1 className="whole-flex">ChangeHub</h1>
