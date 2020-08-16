@@ -119,6 +119,11 @@
     margin: 0 auto;
 }
 
+button:hover {
+    cursor: pointer;
+    filter: invert(5%);
+}
+
 .home-form-child p {
     font-weight: lighter;
     text-align: center;
@@ -127,6 +132,11 @@
 .home-form-child a {
     color: #304F69;
     font-weight: bold;
+}
+
+.home-form-child a:hover {
+    cursor: pointer;
+    filter: invert(25%);
 }
 
 .terms-parent {
