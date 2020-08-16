@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
-
+import requests 
+import re
+from bs4 import BeautifulSoup 
 import pyrebase
 
 config = {
@@ -21,10 +23,48 @@ auth = firebase.auth()
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def hello():
-    return "Hello World!"
+@app.route('/scrapper', methods=['GET'])
+def scrape_for_petitions():
+    """
+    Scraps all new petitions from Color of Change and puts it 
+    into Firebbase
+    """
+    # set up site for scraping
+    URL = "https://colorofchange.org/campaigns/active/"
+    r = requests.get(URL) 
+    soup = BeautifulSoup(r.content, features="html.parser") 
 
+    # retrieve all articles
+    articles = soup.find_all('article')
+    count = 2
+
+    for article in articles:
+
+        # find petition information
+        link = article.find("a").attrs.get("href")
+        category = article.find("ul").find("li").text
+        if "social list opener" in category:
+            category = "General"
+        try:
+            description = article.find("p").text
+        except:
+            description = "Description not found."
+        name = article.find("h3").find("a").text
+        
+        # set up json object to add to firebase
+        data = {
+            "name" : name,
+            "link" : link,
+            "category" : category,
+            "description" : description
+        }
+
+        db.child("petitions").child(count).set(data)
+        count += 1
+
+    return jsonify({"message":"Petitions have been added to Firebase"})
+
+    
 # TODO: sign up errors e.g. short password
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -79,7 +119,6 @@ def signPetitions():
         category -> what petition category
     """
     content = request.json
-
     localId = auth.current_user["localId"]
 
     petitionsToSign = getUnsignedPetitions(localId, content["category"])
@@ -87,8 +126,6 @@ def signPetitions():
     successfulSigns = 0
     for petitionId, petitionInfo in petitionsToSign.items():
         # TODO: Call bot on petitionInfo["link"]
-
-        # Add petitionid to users signed petitions
         db.child("users").child(localId).child("signed-petitions").child(petitionId).set(True)
     
     return jsonify({"count-signed":successfulSigns})
