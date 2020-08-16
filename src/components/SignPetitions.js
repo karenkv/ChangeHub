@@ -12,7 +12,6 @@ const SignPetitions = (props) => {
         "Help Lebanon","Free Palestine", "Stand with Hong Kong","Junk Terror Bill"];
 
     const categories = props.categories;
-    const close = () => props.action;
 
     const [selectedCategories, setCategories] = useState([]);
     const [signed, setSigned] = useState(false);
