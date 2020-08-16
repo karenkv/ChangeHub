@@ -10,7 +10,7 @@ const NavBar = (props) => {
             <div className="nav-bar-text">
                 <p onClick={() => {props.loggedIn ? props.history.push("/home") : props.history.push("")}}>Home</p>
                 <p>About</p>
-                {props.loggedIn ? <p>Logout</p>:<p>Admin</p>}
+                {props.loggedIn ? <p onClick={props.action}>Logout</p>:<p>Admin</p>}
             </div>
         </div>
     )
