@@ -10,10 +10,11 @@ flask = "*"
 flask-cors = "*"
 python-dotenv = "*"
 python-firebase = "*"
-pyrebase = "*"
+pyrebase4 = "*"
 bs4 = "*"
 sendgrid = "*"
 twilio = "*"
+selenium = "*"
 twilio.rest = "*"
 
 [requires]
